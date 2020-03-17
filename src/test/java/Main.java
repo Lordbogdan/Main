@@ -1,48 +1,44 @@
-
 import java.io.*;
 import java.util.Random;
-import static java.lang.System.out;
 
-public class Main  {
+public class Main {
 
-    public static void main(String[] args) throws NumberFormatException, IOException {
+    public static void main(String[] args) throws Exception {
 
-        BufferedReader rd = new BufferedReader( new InputStreamReader(System.in));
+        BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
 
         Random r = new Random();
 
-        int x = r.nextInt(100)+1;
+        int x = r.nextInt(100) + 1;
 
-        int i;
+        int i, counter=0;
 
-
-        int counter = 0;
-        out.println("Угадай");
-        out.println("Чтобы сдаться введи ?Exit...");
+        System.out.println("Угадай");
+        System.out.println("Чтобы сдаться введи ?Exit...");
         do {
-            out.print("Угадай число: ");
-            i = Integer.parseInt(rd.readLine());
-
-            counter++;
-
-            if(i == 0) break;
-            if(i>x) {
-                out.println("Много");
+            System.out.print("Угадай число: ");
+            String line = rd.readLine();
+            if (line.equals("?Exit")) {
+                System.out.println("Good buy");
+                System.exit(0);
             }
-            if(i<x) {
-                out.println("Мало");
-            }
-        }
-        while ((i!=x) && (counter<2));
+            i = Integer.parseInt(line);
 
-        if (i == x) {
-            out.println("Вы выиграли!");
-            out.printf("Число попыток: %d", counter);
+            if (i > x) {
+                System.out.println("Много");
+            }
+            if (i < x) {
+                System.out.println("Мало");
+            }
+            counter ++;
         }
-        else {
-            out.println("Проиграл");
-            out.printf("Загаданное число: %d ", x);
-        }
+
+        while (i != x);
+
+        System.out.println("Вы выиграли!");
+        System.out.printf("Число попыток: %d", counter);
+
+
     }
 
 }
